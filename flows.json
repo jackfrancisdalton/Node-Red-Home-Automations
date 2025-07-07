@@ -1,0 +1,1638 @@
+[
+    {
+        "id": "0983c8818bcba342",
+        "type": "tab",
+        "label": "Living Room",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ab86d8218062a0cd",
+        "type": "tab",
+        "label": "Hallway",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "84197a9ad8b2ebd5",
+        "type": "tab",
+        "label": "Jack's Bed Room",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f0a18365b5429493",
+        "type": "tab",
+        "label": "Theo's Room",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e242d52c91326881",
+        "type": "tab",
+        "label": "Pantry",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "821c3664e5aad7c6",
+        "type": "tab",
+        "label": "Washroom",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "65181cf07156b40a",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Queue",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "24a939fb9440b689",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": false,
+        "rejectUnauthorizedCerts": false,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": "30",
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": ": ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "default",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": false
+    },
+    {
+        "id": "30296d41206a5072",
+        "type": "mqtt out",
+        "z": "0983c8818bcba342",
+        "name": "TV Backlog",
+        "topic": "zigbee2mqtt/living_room_light_strip_tv_console/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1290,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c4e77f3064b79c03",
+        "type": "mqtt out",
+        "z": "0983c8818bcba342",
+        "name": "Book Shelf",
+        "topic": "zigbee2mqtt/living_room_light_strip_bookshelf/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1290,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "675c5c47ef267db1",
+        "type": "mqtt out",
+        "z": "0983c8818bcba342",
+        "name": "fridge_light",
+        "topic": "zigbee2mqtt/living_room_light_strip_fridge/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1290,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "05ab0e276920fadc",
+        "type": "mqtt out",
+        "z": "0983c8818bcba342",
+        "name": "chair light",
+        "topic": "zigbee2mqtt/living_room_light_strip_chair/set",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1280,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "b06f9e68e164e670",
+        "type": "mqtt in",
+        "z": "0983c8818bcba342",
+        "name": "Ikea Remote",
+        "topic": "zigbee2mqtt/living_room_ikea_remote",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "f4b2babf2ca8ae24"
+            ]
+        ]
+    },
+    {
+        "id": "f4b2babf2ca8ae24",
+        "type": "function",
+        "z": "0983c8818bcba342",
+        "name": "Determine what to do ",
+        "func": "const maxColourProfile = 2;\nlet isCurrentlyOn = flow.get(\"is_currently_on\");\nlet currentBrightness = flow.get(\"current_brightness\");\n\n\nconst incColourProfile = (value) => {\n    if(isNaN(value)) {\n        value = 0;\n    }\n    value = Number(value)\n    return (value > maxColourProfile) ? 0 : (value + 1);\n}\n\nconst decColourProfile = (value) => {\n    if(isNaN(value)) {\n        value = 0;\n    }\n    value = Number(value)\n    return (value <= 0) ? maxColourProfile : (value - 1);\n}\n\nif(msg.payload.action == 'brightness_up_click') {\n    flow.set(\"is_currently_on\", true);\n    return { payload: { \"brightness\": 254 } };\n} \n\nif(msg.payload.action == 'brightness_down_click') {\n    flow.set(\"is_currently_on\", false);\n    return { payload: { \"brightness\": 0 } };\n}\n\nif(msg.payload.action == 'toggle') {\n    if(isCurrentlyOn) {\n        flow.set(\"is_currently_on\", false);\n        return { payload: { \"brightness\": 0 } };\n    } else {\n        flow.set(\"is_currently_on\", true);\n        return { payload: { \"brightness\": 254 } };\n    }\n} \n\nif(msg.payload.action == 'arrow_right_click') {\n    let colourProfile = flow.get(\"colour_profile\");\n    let newColourProfile = incColourProfile(colourProfile);\n    \n    flow.set('colour_profile', newColourProfile)\n    return { payload: { brightness: 254 } };\n}\n\n\nif(msg.payload.action == 'arrow_left_click') {\n    let colourProfile = flow.get(\"colour_profile\") || maxColourProfile;\n    let newColourProfile = decColourProfile(colourProfile);\n    \n    flow.set('colour_profile', newColourProfile)\n    return { payload: { brightness: 254 } };\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 280,
+        "wires": [
+            [
+                "a48e39f3975a294c",
+                "1e559bed6a07886d",
+                "870dd75af0d33179",
+                "e2c782feef98bd32"
+            ]
+        ]
+    },
+    {
+        "id": "a48e39f3975a294c",
+        "type": "function",
+        "z": "0983c8818bcba342",
+        "name": "Colour Transformer TV",
+        "func": "const colourProfile1 = () => {\n    return { // jungle\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":82,\"saturation\":87,\"x\":0.371900826446281,\"y\":0.512396694214876},\n            \"color_mode\":\"xy\",\n            \"color_temp\":211,\n            \"color_temp_startup\":495\n        }\n    \n    };\n};\n\nconst colourProfile2 = () => {\n    return {\n        payload: { // lounge\n            ...msg.payload,\n            \"color\":{\"hue\":28,\"saturation\":96,\"x\":0.5208333333333334,\"y\":0.4270833333333333},\n            \"color_mode\":\"xy\",\n            \"color_temp\":467,\n            \"color_temp_startup\":495\n        }\n    };\n};\n\nconst colourProfile3 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":345,\"saturation\":89,\"x\":0.5056179775280899,\"y\":0.25842696629213485},\n            \"color_mode\":\"xy\",\n            \"color_temp\":269,\n            \"color_temp_startup\":495\n        }\n    \n    };\n};\n\n\nlet colourProfileToMap = flow.get(\"colour_profile\");\n\n\nswitch (colourProfileToMap) {\n  case 0: // pink \n    return colourProfile1()\n  case 1: // blue\n    return colourProfile2()\n  case 2: // orange\n    return colourProfile3()\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 280,
+        "wires": [
+            [
+                "30296d41206a5072"
+            ]
+        ]
+    },
+    {
+        "id": "1e559bed6a07886d",
+        "type": "function",
+        "z": "0983c8818bcba342",
+        "name": "Colour Transformer Book Shelf",
+        "func": "const colourProfile1 = () => {\n    return {\n        payload: { // jungle\n            ...msg.payload,\n            \"color\":{\"hue\":101,\"saturation\":94,\"x\":0.3089430894308943,\"y\":0.5934959349593496},\n            \"color_mode\":\"xy\",\n            \"color_temp\":169,\n            \"color_temp_startup\":172\n        }\n    \n    };\n};\n\nconst colourProfile2 = () => {\n    return {\n        payload: { // loung\n            ...msg.payload,\n            \"color\":{\"hue\":13,\"saturation\":97,\"x\":0.5866666666666667,\"y\":0.37333333333333335},\n            \"color_mode\":\"xy\",\n            \"color_temp\":573,\n            \"color_temp_startup\":172\n        }\n    };\n};\n\nconst colourProfile3 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":277,\"saturation\":92,\"x\":0.32065217391304346,\"y\":0.15217391304347827},\n            \"color_mode\":\"xy\",\n            \"color_temp\":278,\n            \"color_temp_startup\":172\n        }\n    \n    };\n};\n\n\nlet colourProfileToMap = flow.get(\"colour_profile\");\n\nswitch (colourProfileToMap) {\n  case 0: // pink \n    return colourProfile1()\n  case 1: // blue\n    return colourProfile2()\n  case 2: // orange\n    return colourProfile3()\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 360,
+        "wires": [
+            [
+                "c4e77f3064b79c03"
+            ]
+        ]
+    },
+    {
+        "id": "870dd75af0d33179",
+        "type": "function",
+        "z": "0983c8818bcba342",
+        "name": "Colour Transformer Fridge",
+        "func": "const colourProfile1 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":136,\"saturation\":66,\"x\":0.25287356321839083,\"y\":0.43103448275862066},\n            \"color_mode\":\"xy\",\n            \"color_temp\":123\n        }\n    \n    };\n};\n\nconst colourProfile2 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":25,\"saturation\":96,\"x\":0.5319148936170213,\"y\":0.4148936170212766},\n            \"color_mode\":\"xy\",\n            \"color_temp\":505\n        }\n    };\n};\n\nconst colourProfile3 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":277,\"saturation\":92,\"x\":0.32065217391304346,\"y\":0.15217391304347827},\n            \"color_mode\":\"xy\",\n            \"color_temp\":278\n        }\n    \n    };\n};\n\n\nlet colourProfileToMap = flow.get(\"colour_profile\");\n\nswitch (colourProfileToMap) {\n  case 0: // pink \n    return colourProfile1()\n  case 1: // blue\n    return colourProfile2()\n  case 2: // orange\n    return colourProfile3()\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 440,
+        "wires": [
+            [
+                "675c5c47ef267db1"
+            ]
+        ]
+    },
+    {
+        "id": "e2c782feef98bd32",
+        "type": "function",
+        "z": "0983c8818bcba342",
+        "name": "Colour Transformer TV",
+        "func": "const colourProfile1 = () => {\n    return { // jungle\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":82,\"saturation\":87,\"x\":0.371900826446281,\"y\":0.512396694214876},\n            \"color_mode\":\"xy\",\n            \"color_temp\":211,\n            \"color_temp_startup\":495,\n        }\n    \n    };\n};\n\nconst colourProfile2 = () => {\n    return {\n        payload: { // lounge\n            ...msg.payload,\n            \"color\":{\"hue\":13,\"saturation\":97,\"x\":0.5866666666666667,\"y\":0.37333333333333335},\n            \"color_mode\":\"xy\",\n            \"color_temp\":573,\n            \"color_temp_startup\":172,\n        }\n    };\n};\n\nconst colourProfile3 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":345,\"saturation\":89,\"x\":0.5056179775280899,\"y\":0.25842696629213485},\n            \"color_mode\":\"xy\",\n            \"color_temp\":269,\n            \"color_temp_startup\":495,\n        }\n    \n    };\n};\n\n\nlet colourProfileToMap = flow.get(\"colour_profile\");\n\n\nswitch (colourProfileToMap) {\n  case 0: // pink \n    return colourProfile1()\n  case 1: // blue\n    return colourProfile2()\n  case 2: // orange\n    return colourProfile3()\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 520,
+        "wires": [
+            [
+                "05ab0e276920fadc"
+            ]
+        ]
+    },
+    {
+        "id": "6c60017e9f652b55",
+        "type": "mqtt in",
+        "z": "0983c8818bcba342",
+        "name": "Speaker Button",
+        "topic": "zigbee2mqtt/speaker_control_button",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 420,
+        "y": 720,
+        "wires": [
+            [
+                "2241090b7a6ac122"
+            ]
+        ]
+    },
+    {
+        "id": "2241090b7a6ac122",
+        "type": "switch",
+        "z": "0983c8818bcba342",
+        "name": "",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "single",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "long",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 720,
+        "wires": [
+            [
+                "626480c2cac7beb7"
+            ],
+            [
+                "7c8dc4bd1e82258d"
+            ]
+        ]
+    },
+    {
+        "id": "626480c2cac7beb7",
+        "type": "api-call-service",
+        "z": "0983c8818bcba342",
+        "name": "Left Yamaha HS5",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.speaker1",
+            "switch.speaker2"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 1230,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c8dc4bd1e82258d",
+        "type": "api-call-service",
+        "z": "0983c8818bcba342",
+        "name": "Right Yamaha HS5",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.speaker1",
+            "switch.speaker2"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 1230,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c362513283602b87",
+        "type": "ha-time",
+        "z": "0983c8818bcba342",
+        "name": "Trigger on alarm time ",
+        "server": "24a939fb9440b689",
+        "version": 4,
+        "exposeAsEntityConfig": "",
+        "entityId": "input_datetime.living_room_shutdown_time",
+        "property": "state",
+        "offset": "0",
+        "offsetType": "num",
+        "offsetUnits": "minutes",
+        "randomOffset": false,
+        "repeatDaily": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "sunday": true,
+        "monday": true,
+        "tuesday": true,
+        "wednesday": true,
+        "thursday": true,
+        "friday": true,
+        "saturday": true,
+        "ignorePastDate": true,
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "ba538b12883911f9"
+            ]
+        ]
+    },
+    {
+        "id": "ba538b12883911f9",
+        "type": "api-call-service",
+        "z": "0983c8818bcba342",
+        "name": "Turn on lights",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.living_room_light_strip_chair",
+            "light.living_room_light_strip_fridge",
+            "light.living_room_light_strip_tv_console",
+            "light.living_room_light_strip_bookshelf"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_off",
+        "x": 820,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca85cb22a5a2013a",
+        "type": "mqtt in",
+        "z": "ab86d8218062a0cd",
+        "name": "Hallway Sensor 1",
+        "topic": "zigbee2mqtt/hue_motion_sensor_2",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 460,
+        "wires": [
+            [
+                "5d6978c3325ea343"
+            ]
+        ]
+    },
+    {
+        "id": "629a47243329e082",
+        "type": "mqtt out",
+        "z": "ab86d8218062a0cd",
+        "name": "hallwaylight",
+        "topic": "zigbee2mqtt/hallway_light_strip/set",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1630,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "699b723331625945",
+        "type": "function",
+        "z": "ab86d8218062a0cd",
+        "name": "state off",
+        "func": "\n\nreturn { payload: { \"brightness\": 0 }, topic: 'zigbee2mqtt/hallway_rgb_controller' };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1400,
+        "y": 560,
+        "wires": [
+            [
+                "629a47243329e082"
+            ]
+        ]
+    },
+    {
+        "id": "5d6978c3325ea343",
+        "type": "switch",
+        "z": "ab86d8218062a0cd",
+        "name": "Is occupied",
+        "property": "payload.occupancy",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 520,
+        "wires": [
+            [
+                "46249e8860880307"
+            ]
+        ]
+    },
+    {
+        "id": "d5fa9c8d6440bcc5",
+        "type": "function",
+        "z": "ab86d8218062a0cd",
+        "name": "state on",
+        "func": "\nreturn { payload: { \"brightness\": 100 }, topic: 'zigbee2mqtt/hallway_rgb_controller' };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1400,
+        "y": 480,
+        "wires": [
+            [
+                "629a47243329e082"
+            ]
+        ]
+    },
+    {
+        "id": "f43e4cb41ae3664e",
+        "type": "mqtt in",
+        "z": "ab86d8218062a0cd",
+        "name": "Hallway Sensor 2",
+        "topic": "zigbee2mqtt/hue_motion_sensor_1",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 580,
+        "wires": [
+            [
+                "5d6978c3325ea343"
+            ]
+        ]
+    },
+    {
+        "id": "4d8039d496662f0a",
+        "type": "trigger",
+        "z": "ab86d8218062a0cd",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "pay",
+        "op2type": "str",
+        "duration": "60",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 750,
+        "y": 520,
+        "wires": [
+            [
+                "8c34c60ac59cf8e0"
+            ]
+        ]
+    },
+    {
+        "id": "8c34c60ac59cf8e0",
+        "type": "switch",
+        "z": "ab86d8218062a0cd",
+        "name": "If first trigger turn on, if no motion for a while turn off",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 520,
+        "wires": [
+            [
+                "d5fa9c8d6440bcc5"
+            ],
+            [
+                "699b723331625945"
+            ]
+        ]
+    },
+    {
+        "id": "46249e8860880307",
+        "type": "switch",
+        "z": "ab86d8218062a0cd",
+        "name": "is dark enough to turn on",
+        "property": "payload.illuminance",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "2000",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 520,
+        "wires": [
+            [
+                "4d8039d496662f0a"
+            ]
+        ]
+    },
+    {
+        "id": "0924bee0d5d78e82",
+        "type": "mqtt in",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Ikea Remote",
+        "topic": "zigbee2mqtt/jacks_bedroom_ikea_remote",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "2617d2b7c829fc8a"
+            ]
+        ]
+    },
+    {
+        "id": "b033366d52e8237a",
+        "type": "mqtt out",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Desk backlgiht",
+        "topic": "zigbee2mqtt/jacks_bedroom_light_strip_desk/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1280,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "2617d2b7c829fc8a",
+        "type": "function",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Determine what to do",
+        "func": "const maxColourProfile = 2;\nlet isCurrentlyOn = flow.get(\"is_currently_on\");\nlet currentBrightness = flow.get(\"current_brightness\");\n\nconst incColourProfile = (value) => {\n    if(isNaN(value)) {\n        value = 0\n    }\n    value = Number(value)\n    return (value >= maxColourProfile) ? 0 : (value + 1);\n}\n\nconst decColourProfile = (value) => {\n    if(isNaN(value)) {\n        value = 0\n    }\n    value = Number(value)\n    return (value <= 0) ? maxColourProfile : (value - 1);\n}\n\n\nif(msg.payload.action == 'brightness_up_click') {\n    flow.set(\"is_currently_on\", true);\n    return { payload: { \"brightness\": 254 }};\n} \n\nif(msg.payload.action == 'brightness_down_click') {\n    flow.set(\"is_currently_on\", false);\n    return { payload: { \"brightness\": 0 } };\n}\n\nif(msg.payload.action == 'toggle') {\n    if(isCurrentlyOn) {\n        flow.set(\"is_currently_on\", false);\n        return { payload: { \"brightness\": 0 } };\n    } else {\n        flow.set(\"is_currently_on\", true);\n        return { payload: { \"brightness\": 254 } };\n    }\n} \n\nif(msg.payload.action == 'arrow_right_click') {\n    let colourProfile = flow.get(\"colour_profile\");\n    let newColourProfile = incColourProfile(colourProfile);\n    \n    flow.set('colour_profile', newColourProfile)\n    return { payload: { brightness: 254 } };\n}\n\n\nif(msg.payload.action == 'arrow_left_click') {\n    let colourProfile = flow.get(\"colour_profile\");\n    let newColourProfile = decColourProfile(colourProfile);\n    \n    flow.set('colour_profile', newColourProfile)\n    return { payload: { brightness: 254 } };\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 400,
+        "wires": [
+            [
+                "f039d64c9a555f1b",
+                "dfba6c2fed5e9e72"
+            ]
+        ]
+    },
+    {
+        "id": "f039d64c9a555f1b",
+        "type": "function",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Colour Transformer Desk",
+        "func": "const colourProfile1 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":0,\"saturation\":81,\"x\":0.6385,\"y\":0.4121},\n            // \"color_mode\":\"hs\",\n            \"color_temp\":496,\n            \"color_temp_startup\":158,\n        }\n    \n    };\n};\n\nconst colourProfile2 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            // \"color\":{\"hue\":35,\"saturation\":100,\"x\":0.5131,\"y\":0.4582},\n            // \"color_mode\":\"hs\",\n            // \"color_temp\":413,\n            // \"color_temp_startup\":158\n            \"color\":{\"hue\":27,\"saturation\":94,\"x\":0.5157894736842106,\"y\":0.42105263157894735},\n            \"color_temp\":466,\n            \"color_temp_startup\":158\n            // \"color\":{\"hue\":131,\"saturation\":66,\"x\":0.25748502994011974,\"y\":0.4431137724550898},\n            // \"color_mode\":\"xy\",\n            // \"color_temp\":128,\n            // \"color_temp_startup\":158\n        }\n    };\n};\n\nconst colourProfile3 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"brightness\": 0\n        }\n    \n    };\n};\n\n\nlet colourProfileToMap = flow.get(\"colour_profile\");\n\nswitch (colourProfileToMap) {\n  case 0: // pink \n    return colourProfile1()\n  case 1: // blue\n    return colourProfile2()\n  case 2: // orange\n    return colourProfile3()\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 520,
+        "wires": [
+            [
+                "b033366d52e8237a"
+            ]
+        ]
+    },
+    {
+        "id": "dfba6c2fed5e9e72",
+        "type": "function",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Colour Transformer Bed",
+        "func": "const colourProfile1 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":253,\"saturation\":95,\"x\":0.22784810126582278,\"y\":0.10126582278481013},\n            // \"color_mode\":\"xy\",\n            \"color_temp\":584\n        }\n    \n    };\n};\n\nconst colourProfile2 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            // \"color\":{\"hue\":185,\"saturation\":63,\"x\":0.23076923076923078,\"y\":0.32905982905982906},\n            // \"color_mode\":\"xy\",\n            // \"color_temp\":81\n            // \"color\":{\"hue\":154,\"saturation\":70,\"x\":0.2318,\"y\":0.3909},\n            // \"color_mode\":\"hs\",\n            // \"color_temp\":102\n            \"color\":{\"hue\":32,\"saturation\":91,\"x\":0.49107142857142855,\"y\":0.42857142857142855},\n        }\n    };\n};\n\nconst colourProfile3 = () => {\n    return {\n        payload: {\n            ...msg.payload,\n            \"color\":{\"hue\":354,\"saturation\":100,\"x\":0.6373,\"y\":0.2703},\n            // \"color_mode\":\"hs\",\n            \"color_temp\":140\n        }\n    \n    };\n};\n\n\nlet colourProfileToMap = flow.get(\"colour_profile\");\n\nswitch (colourProfileToMap) {\n  case 0: // pink \n    return colourProfile1()\n  case 1: // blue\n    return colourProfile2()\n  case 2: // orange\n    return colourProfile3()\n}\n// ",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 400,
+        "wires": [
+            [
+                "bb60d62ff4271d75"
+            ]
+        ]
+    },
+    {
+        "id": "bb60d62ff4271d75",
+        "type": "mqtt out",
+        "z": "84197a9ad8b2ebd5",
+        "name": "bed backlight",
+        "topic": "zigbee2mqtt/jacks_bedroom_light_strip_bed/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1270,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "88c89387e7b13631",
+        "type": "ha-time",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Trigger on alarm time ",
+        "server": "24a939fb9440b689",
+        "version": 4,
+        "exposeAsEntityConfig": "",
+        "entityId": "input_datetime.jack_alarm_time",
+        "property": "state",
+        "offset": "0",
+        "offsetType": "num",
+        "offsetUnits": "minutes",
+        "randomOffset": false,
+        "repeatDaily": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "sunday": true,
+        "monday": true,
+        "tuesday": true,
+        "wednesday": true,
+        "thursday": true,
+        "friday": true,
+        "saturday": true,
+        "ignorePastDate": true,
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "dc425a6b9cbf2a7b"
+            ]
+        ]
+    },
+    {
+        "id": "dc425a6b9cbf2a7b",
+        "type": "api-current-state",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Check if light alarm is enabled",
+        "server": "24a939fb9440b689",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.jack_light_alarm_enabled",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 790,
+        "y": 260,
+        "wires": [
+            [],
+            [
+                "ac51d3f5d1e465b9"
+            ]
+        ]
+    },
+    {
+        "id": "ac51d3f5d1e465b9",
+        "type": "api-call-service",
+        "z": "84197a9ad8b2ebd5",
+        "name": "Turn on lights",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.jacks_bedroom_light_strip_bed",
+            "light.jacks_bedroom_light_strip_desk"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 1080,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fed0b8751d739573",
+        "type": "ha-time",
+        "z": "f0a18365b5429493",
+        "name": "Trigger on alarm time ",
+        "server": "24a939fb9440b689",
+        "version": 4,
+        "exposeAsEntityConfig": "",
+        "entityId": "input_datetime.theo_alarm_time",
+        "property": "state",
+        "offset": "0",
+        "offsetType": "num",
+        "offsetUnits": "minutes",
+        "randomOffset": false,
+        "repeatDaily": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "sunday": true,
+        "monday": true,
+        "tuesday": true,
+        "wednesday": true,
+        "thursday": true,
+        "friday": true,
+        "saturday": true,
+        "ignorePastDate": true,
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "82f06a13446eb62f"
+            ]
+        ]
+    },
+    {
+        "id": "82f06a13446eb62f",
+        "type": "api-current-state",
+        "z": "f0a18365b5429493",
+        "name": "Check if light alarm is enabled",
+        "server": "24a939fb9440b689",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.theo_light_alarm_enabled",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 570,
+        "y": 420,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "be3f21fbab9440d5",
+        "type": "api-call-service",
+        "z": "f0a18365b5429493",
+        "name": "Turn on lights",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.light_bulb_1_theos_room",
+            "light.light_strip_1_theos_room"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 860,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4476b0b7e8ad867f",
+        "type": "mqtt in",
+        "z": "f0a18365b5429493",
+        "name": "Lights button",
+        "topic": "zigbee2mqtt/theo_button",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 720,
+        "wires": [
+            [
+                "4b40d6afd808a6e8"
+            ]
+        ]
+    },
+    {
+        "id": "acdbc877ee2c45bb",
+        "type": "api-call-service",
+        "z": "f0a18365b5429493",
+        "name": "Turn on lights",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.light_bulb_1_theos_room",
+            "light.light_strip_1_theos_room"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 1660,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "acca3e60ffb5721d",
+        "type": "api-call-service",
+        "z": "f0a18365b5429493",
+        "name": "Turn off lights",
+        "server": "24a939fb9440b689",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.light_bulb_1_theos_room",
+            "light.light_strip_1_theos_room"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_off",
+        "x": 1640,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "172a9f5417772db9",
+        "type": "api-current-state",
+        "z": "f0a18365b5429493",
+        "name": "Light State",
+        "server": "24a939fb9440b689",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.light_strip_1_theos_room",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "cb98adda78d1fea1"
+            ]
+        ]
+    },
+    {
+        "id": "901d93f9a09e2c40",
+        "type": "api-current-state",
+        "z": "f0a18365b5429493",
+        "name": "Light State",
+        "server": "24a939fb9440b689",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.light_bulb_1_theos_room",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 530,
+        "y": 820,
+        "wires": [
+            [
+                "62ac6b014e9c8259"
+            ]
+        ]
+    },
+    {
+        "id": "cb98adda78d1fea1",
+        "type": "change",
+        "z": "f0a18365b5429493",
+        "name": "Turn on light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "light_bulb",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 640,
+        "wires": [
+            [
+                "8d7a1e49ebe08c9f"
+            ]
+        ]
+    },
+    {
+        "id": "62ac6b014e9c8259",
+        "type": "change",
+        "z": "f0a18365b5429493",
+        "name": "turn on lamp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "light_strip",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 820,
+        "wires": [
+            [
+                "8d7a1e49ebe08c9f"
+            ]
+        ]
+    },
+    {
+        "id": "8d7a1e49ebe08c9f",
+        "type": "join",
+        "z": "f0a18365b5429493",
+        "name": "Combine Results (waits for 2)",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1010,
+        "y": 720,
+        "wires": [
+            [
+                "b0182e50acad2ff3"
+            ]
+        ]
+    },
+    {
+        "id": "b0182e50acad2ff3",
+        "type": "function",
+        "z": "f0a18365b5429493",
+        "name": "determine on or off",
+        "func": "const p1 = msg.payload.light_bulb;\nconst p2 = msg.payload.light_strip;\n\nif ((p1 === \"on\" && p2 === \"on\")) {\n    return { payload: \"off\" };\n}\n\nreturn { payload: \"on\" };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 800,
+        "wires": [
+            [
+                "0db502383012ba3d"
+            ]
+        ]
+    },
+    {
+        "id": "0db502383012ba3d",
+        "type": "switch",
+        "z": "f0a18365b5429493",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1430,
+        "y": 720,
+        "wires": [
+            [
+                "acdbc877ee2c45bb"
+            ],
+            [
+                "acca3e60ffb5721d"
+            ]
+        ]
+    },
+    {
+        "id": "4b40d6afd808a6e8",
+        "type": "switch",
+        "z": "f0a18365b5429493",
+        "name": "",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "single",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 720,
+        "wires": [
+            [
+                "172a9f5417772db9",
+                "901d93f9a09e2c40"
+            ]
+        ]
+    },
+    {
+        "id": "60f8b9594bbb91b5",
+        "type": "mqtt in",
+        "z": "e242d52c91326881",
+        "name": "Laser Broken",
+        "topic": "zigbee2mqtt/pantry_door_laser_sensor",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 710,
+        "y": 340,
+        "wires": [
+            [
+                "aecbc1aa18cb19b0"
+            ]
+        ]
+    },
+    {
+        "id": "e50fdfc2562b9322",
+        "type": "function",
+        "z": "e242d52c91326881",
+        "name": "state on",
+        "func": "\nreturn { payload: { \"state\": \"ON\" }, topic: 'zigbee2mqtt/0xc4988600000818a2' };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 300,
+        "wires": [
+            [
+                "05d41c20720e1b13"
+            ]
+        ]
+    },
+    {
+        "id": "a32cef0e769611cc",
+        "type": "function",
+        "z": "e242d52c91326881",
+        "name": "state off",
+        "func": "\nreturn { payload: { \"state\": \"OFF\" }, topic: 'zigbee2mqtt/0xc4988600000818a2' };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 380,
+        "wires": [
+            [
+                "05d41c20720e1b13"
+            ]
+        ]
+    },
+    {
+        "id": "aecbc1aa18cb19b0",
+        "type": "switch",
+        "z": "e242d52c91326881",
+        "name": "Route based on laser contact",
+        "property": "payload.contact",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1000,
+        "y": 340,
+        "wires": [
+            [
+                "e50fdfc2562b9322"
+            ],
+            [
+                "a32cef0e769611cc"
+            ]
+        ]
+    },
+    {
+        "id": "05d41c20720e1b13",
+        "type": "mqtt out",
+        "z": "e242d52c91326881",
+        "name": "Pantry Light",
+        "topic": "zigbee2mqtt/pantry_light_bulb/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1430,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "aa8fa2a741595f28",
+        "type": "mqtt in",
+        "z": "821c3664e5aad7c6",
+        "name": "Laser Broken",
+        "topic": "zigbee2mqtt/wash_door_laser_sensor",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "65181cf07156b40a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 390,
+        "y": 640,
+        "wires": [
+            [
+                "a958773cf5f0d47b"
+            ]
+        ]
+    },
+    {
+        "id": "39097a5ba520528a",
+        "type": "mqtt out",
+        "z": "821c3664e5aad7c6",
+        "name": "Washroom light",
+        "topic": "zigbee2mqtt/wash_room_light_bulb/set",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "65181cf07156b40a",
+        "x": 1140,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "b1af4a7ccfa8a2f2",
+        "type": "function",
+        "z": "821c3664e5aad7c6",
+        "name": "state on",
+        "func": "\nreturn { payload: { \"state\": \"ON\" }};",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 600,
+        "wires": [
+            [
+                "39097a5ba520528a"
+            ]
+        ]
+    },
+    {
+        "id": "887e6cfd3740e95b",
+        "type": "function",
+        "z": "821c3664e5aad7c6",
+        "name": "state off",
+        "func": "\nreturn { payload: { \"state\": \"OFF\" }};",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 680,
+        "wires": [
+            [
+                "39097a5ba520528a"
+            ]
+        ]
+    },
+    {
+        "id": "a958773cf5f0d47b",
+        "type": "switch",
+        "z": "821c3664e5aad7c6",
+        "name": "Route based on contact",
+        "property": "payload.contact",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 640,
+        "wires": [
+            [
+                "b1af4a7ccfa8a2f2"
+            ],
+            [
+                "887e6cfd3740e95b"
+            ]
+        ]
+    }
+]
