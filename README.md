@@ -1,6 +1,6 @@
 # Node Red Home Automations
-Here are the home automations I have configured for my HASSIO set up. 
-If you are interested in inspecting my approach or can simply copy paste them feel free!
+After spending a year (on and off) honing in my DIY home automation system, I thought I'd share the Node-Red configs with the community. 
+If you are interested in inspecting my approach or want to simply copy-paste them feel free!
 Saving on Github as a backup, but also to share with the home automation community.
 
 # Automations
